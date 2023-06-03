@@ -114,7 +114,7 @@ a:active {
 }
 
 .menu-container::before {
-  background: url("/public/Stars.svg");
+
 }
 
 .menu-container::after {
@@ -419,7 +419,7 @@ a:active {
   background-image: url(   https://www.manufosela.es/shooting_stars/hori.png), url( https://www.manufosela.es/shooting_stars/stars_5.png);
   background-repeat: repeat-x, repeat-x repeat-y;
   transform:translate3D(0em, 0em, 0);
-  animation: stars 21s ease; 
+  animation: stars 2s ease; 
   transform-style: preserve-3d;
 }
 
