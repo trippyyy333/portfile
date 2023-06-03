@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <script src="https://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+  <link rel="stylesheet" href="in.css">
+  <style>
+
+    @keyframes move-background {
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+    @-webkit-keyframes move-background {
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+    
+    @-moz-keyframes move-background {    
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+    
+        @-webkit-keyframes move-background {
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+    
+    .background-container{
+      position: fixed;
+      top: 0;
+      left:0;
+      bottom: 0;
+      right: 0;
+    }
+    
+    img{
+      height: 70vh;
+      width:70vh;
+      position: absolute;
+      z-index: 3;
+      right: 20px;
+    }
+
+.moon {
+  top: 0;
+  right: 0;
+  position: fixed;
+  background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Moon.svg?sanitize=true) right 150% no-repeat;
+  background-size: 40% 40%;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 10;
+  animation: moon-move-in 1.2s 1s forwards;
+}
+
+@keyframes moon-move-in {
+  from {
+    opacity: 0;
+    background-position: right 150%;
+  }
+  to {
+    opacity: 1;
+    background-position: top right;
+  }
+}
+.mon{
+  max-width: 250px;
+  max-height: 250px;
+  mix-blend-mode: color-dodge;
+}
+
+    </style>
+
+<!-- <script src="starr.js"></script> -->
+
+  <title>Document</title>
+</head>
+<body>
+  <section id="start">
+  <div class="twinkling"></div>
+  <header>
+    <header id="welcome-section">
+      <div class="clouds"></div>
+      <div class="stars"></div>
+      <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png" class="mon" alt=""> -->
+      <div id="layout" class="stars">
+        <div class="forest"></div>
+        <div class="moon"></div>
+        
+        <div class="silhouette"></div>
+      <div id="ShootingStarParams"></div></div>
+
+<!-- <div class="twinkling"></div> -->
+
+
+
+
+
+    </header>
+    
+  </header>
+</section>
+    
+</body>
+</html>
+
+
+<script>(function() {
+  /**
+     author: @manufosela
+     2013/08/27    copyleft 2013
+
+     ShootingStar class Main Methods:
+     launch: launch shooting stars every N seconds received by              param. 10 seconds by default.
+      launchStar: launch a shooting star. Received options                  object by param with:
+               - dir (direction between 0 and 1)
+               - life (between 100 and 400)
+               - beamSize (between 400 and 700)
+               - velocity (between 2 and 10)
+  **/
+
+  ShootingStar = function(id) {
+    this.n = 0;
+    this.m = 0;
+    this.defaultOptions = {
+      velocity: 8,
+      starSize: 10,
+      life: 300,
+      beamSize: 400,
+      dir: -1
+    };
+    this.options = {};
+    id = (typeof id != "undefined") ? id : "";
+    this.capa = ($(id).lenght > 0) ? "body" : id;
+    this.wW = $(this.capa).innerWidth();
+    this.hW = $(this.capa).innerHeight();
+  };
+
+  ShootingStar.prototype.addBeamPart = function(x, y) {
+    this.n++;
+    var name = this.getRandom(100, 1);
+    $("#star" + name).remove();
+    $(this.capa).append("<div id='star" + name + "'></div>");
+    $("#star" + name).append("<div id='haz" + this.n + "' class='haz' style='position:absolute; color:#FF0; width:10px; height:10px; font-weight:bold; font-size:" + this.options.starSize + "px'>·</div>");
+    if (this.n > 1) $("#haz" + (this.n - 1)).css({
+      color: "rgba(255,255,255,0.5)"
+    });
+    $("#haz" + this.n).css({
+      top: y + this.n,
+      left: x + (this.n * this.options.dir)
+    });
+  }
+
+  ShootingStar.prototype.delTrozoHaz = function() {
+    this.m++;
+    $("#haz" + this.m).animate({
+      opacity: 0
+    }, 75);
+    if (this.m >= this.options.beamSize) {
+      $("#ShootingStarParams").fadeOut("slow");
+    }
+  }
+
+  ShootingStar.prototype.getRandom = function(max, min) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  ShootingStar.prototype.toType = function(obj) {
+    if (typeof obj === "undefined") {
+      return "undefined"; /* consider: typeof null === object */
+    }
+    if (obj === null) {
+      return "null";
+    }
+    var type = Object.prototype.toString.call(obj).match(/^\[object\s(.*)\]$/)[1] || '';
+    switch (type) {
+      case 'Number':
+        if (isNaN(obj)) {
+          return "nan";
+        } else {
+          return "number";
+        }
+      case 'String':
+      case 'Boolean':
+      case 'Array':
+      case 'Date':
+      case 'RegExp':
+      case 'Function':
+        return type.toLowerCase();
+    }
+    if (typeof obj === "object") {
+      return "object";
+    }
+    return undefined;
+  }
+
+  ShootingStar.prototype.launchStar = function(options) {
+    if (this.toType(options) != "object") {
+      options = {};
+    }
+    this.options = $.extend({}, this.defaultOptions, options);
+    this.n = 0;
+    this.m = 0;
+    var i = 0,
+      l = this.options.beamSize,
+      x = this.getRandom(this.wW - this.options.beamSize - 100, 100),
+      y = this.getRandom(this.hW - this.options.beamSize - 100, 100),
+      self = this;
+    for (; i < l; i++) {
+      setTimeout(function() {
+        self.addBeamPart(x, y);
+      }, self.options.life + (i * self.options.velocity));
+    }
+    for (i = 0; i < l; i++) {
+      setTimeout(function() {
+        self.delTrozoHaz()
+      }, self.options.beamSize + (i * self.options.velocity));
+    }
+    $("#ShootingStarParams").html("Launching shooting star. PARAMS: wW: " + this.wW + " - hW: " + this.hW + " - life: " + this.options.life + " - beamSize: " + this.options.beamSize + " - velocity: " + this.options.velocity);
+    $("#ShootingStarParams").fadeIn("slow");
+  }
+
+  ShootingStar.prototype.launch = function(everyTime) {
+    if (this.toType(everyTime) != "number") {
+      everyTime = 10;
+    }
+    everyTime = everyTime * 1000;
+    this.launchStar();
+    var self = this;
+    setInterval(function() {
+      var options = {
+        dir: (self.getRandom(1, 0)) ? 1 : -1,
+        life: self.getRandom(400, 100),
+        beamSize: self.getRandom(700, 400),
+        velocity: self.getRandom(10, 4)
+      }
+      self.launchStar(options);
+    }, everyTime);
+  }
+
+})();
+
+$(document).ready(function() {
+  var shootingStarObj = new ShootingStar("body");
+  shootingStarObj.launch();
+});</script>
