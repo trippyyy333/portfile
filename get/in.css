@@ -17,7 +17,7 @@ html, body {
 
 body {
   color: #252934;
-  background: #181d23;
+  background: #000000;
   font-size: 62.5%;
   font-family: 'Overlock', Arial, Helvetica, sans-serif;
   overflow-x: hidden;
@@ -59,7 +59,7 @@ a:active {
   right: 0;
   height: calc( 100vh - 120px );
   width: calc( 100vw - 120px );
-  background: #181d23;
+  background: #000000;
 }
 
 .menu-container.active > .overlay {
@@ -96,7 +96,7 @@ a:active {
   height: 100vh;
   width: 100vw;
   background: #202934;
-  border: 60px solid #181d23;
+  border: 60px solid #000000;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -303,7 +303,7 @@ a:active {
 }
 
 #navbar.bg-active {
-  background: #181d23;
+  background: #000000;
 }
 
 #navbar .nav-wrapper {
@@ -377,7 +377,7 @@ a:active {
 
 @media only screen and (max-width: 849px) {
   #navbar {
-    background: #181d23aa;
+    background: #000000aa;
   }
 }
 
@@ -399,7 +399,7 @@ a:active {
 
 #welcome-section {
   background: #202736;
-  background: linear-gradient(to bottom, #181d23 0%, #202736 80%);
+  background: linear-gradient(to bottom, #000000 0%, #202736 80%);
   background-attachment: fixed;
   background-size: cover;
   position: relative;
@@ -437,13 +437,13 @@ a:active {
   position: absolute;
   bottom: -300px;
   left: 0;
-  background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Trees.svg?sanitize=true) bottom left repeat-x;
+  background: url('../Trees1.svg') bottom left repeat-x;
   background-size: cover;
   width: 100%;
   height: 80%;
   opacity: 0;
   animation: forest-move-in 1000ms 500ms forwards;
-  border-bottom: 300px solid #181d23;
+  border-bottom: 300px solid #000;
   z-index: 504;
 }
 
@@ -502,6 +502,36 @@ a:active {
     background-position: top right;
   }
 }
+
+.factory {
+  /* position: absolute; */
+  bottom: 700px;
+  left: 50px;
+
+  right: 2000px;
+  background: url('./dark3.png') bottom right no-repeat center;
+  height: 1000px;
+  width: 1000px;
+  /* width: 6370px;
+  height: 6170px; */
+  opacity: 0;
+  animation: factory-move-in 1000ms 500ms forwards;
+  /* border-bottom: -250px solid #000264; */
+  z-index: 0;
+  
+
+}
+
+@keyframes factory-move-in {
+  from {
+    background-position-y: 50%;
+  }
+  to {
+    opacity: 1;
+    background-position-y: 100%;
+  }
+}
+
 
 /* Copy and CTA */
 #welcome-section .container {
@@ -747,9 +777,10 @@ a:active {
   font-size: 1.4rem;
   position: relative;
   background: #006f91;
-  background: linear-gradient(21deg, #000264 0%,#00ff22 98%,#181d23 100%);
+  background: linear-gradient(17deg, #000000 0%,#000264 20%,#000264 30%,#0044aa 40%,#00d170 98%,#000000 100%);
   margin-top: -10rem;
   z-index: 1;
+  min-width: none;
 }
 
 #projects a,
@@ -798,8 +829,8 @@ a:active {
   width: 70%;
   padding: 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 2fr;
   grid-gap: 2rem;
 }
 
@@ -810,9 +841,13 @@ a:active {
   color: #252934;
   overflow: hidden;
   text-align: center;
-  border-radius: 50%;
-  border: 1px solid #fafafa;
-  box-shadow: 0 20px 10px -10px #25293450;
+  border-radius: 77%;
+  border-top-left-radius: 220px;
+  border-top-right-radius: 220px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px dotted #0508312f;
+  box-shadow: 0 20px 10px -10px #12141850;
   transition: 300ms;
 }
 
@@ -908,7 +943,7 @@ a:active {
 
 @media only screen and (max-width: 649px) {
   #projects {
-    background: #f0f0f0;
+    /* background: #f0f0f0; */
   }
   #projects .projects-container {
     padding: 12rem 0 8rem;
@@ -933,7 +968,7 @@ a:active {
  *****************/
 
 #contact {
-  background: #181d23 url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/envelope.svg?sanitize=true) no-repeat right;
+  background: #000000 url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/envelope.svg?sanitize=true) no-repeat right;
   clip-path: polygon(0 0, 20% 100px, 100% 0, 100% 100%, 0 100%);
   color: #fafafa;
   min-height: 100vh;
